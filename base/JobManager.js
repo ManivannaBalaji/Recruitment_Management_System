@@ -2,6 +2,10 @@ let openings = [];
 
 class JobManager{
 
+    /**
+     * Function to add new job offer to localstorage.
+     * @param {*} offer 
+     */
     static addJobOffer(offer){
         openings = this.getJobOffers();
         let length = openings.length;
@@ -16,35 +20,84 @@ class JobManager{
         console.log("Job added successfully");
     }
 
+    /**
+     * Function to retrieve all job offers.
+     */
     static getJobOffers(){
         let openings = JSON.parse(localStorage.getItem('OPENINGS')) || [];
         return openings;
     }
 
+    /**
+     * Function to remove an existing job offer from storage.
+     * @param {*} jobOfferId 
+     */
     static removeJobOffer(jobOfferId){
         let openings = this.getJobOffers();
         let index = openings.findIndex(offer => offer.id == jobOfferId);
         if(index != -1){
             openings.splice(index, 1);
             this.saveToStorage(openings);
+            console.log("Job Removed Successfully");
         } else{
             console.log("Error : Job offer not available.");
         }
     }
 
+    /**
+     * Function to update existing job offer.
+     * @param {*} oldJobOfferId 
+     * @param {*} newJobOffer 
+     */
     static updateJobOffer(oldJobOfferId, newJobOffer){
         let openings = this.getJobOffers();
         let index = openings.findIndex(offer => offer.id == oldJobOfferId);
         if(index != -1){
             openings.splice(index, 1, newJobOffer);
             this.saveToStorage(openings);
+            console.log("Job updated successfully");
         } else{
             console.log("Error : Job Offer not available");
         }
     }
 
+    /**
+     * Function to save job offer to storage.
+     * @param {*} openings 
+     */
     static saveToStorage(openings){
         localStorage.setItem("OPENINGS", JSON.stringify(openings));
+    }
+
+    /**
+     * Function to search specific job from storage.
+     * @param {*} jobOfferName 
+     */
+    static searchJobOffer(jobOfferName){
+        let searchedJobOffer = [];
+        openings = this.getJobOffers();
+        openings.forEach(element => {
+            if(element.jobTitle.includes(jobOfferName)){
+                searchedJobOffer.push(element);
+            }
+        });
+        return searchedJobOffer;
+    }
+
+    /**
+     * Function to get a job offer using job id.
+     * @param {number} id 
+     */
+    static getJobOffer(id){
+        let jobOffer;
+        openings = this.getJobOffers();
+        for(let i = 0; i < openings.length; i++){
+            if(openings[i].id == id){
+                jobOffer = openings[i];
+                break;
+            }
+        }
+        return jobOffer;
     }
 
 }

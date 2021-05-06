@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Recruit Desk</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+    <h1 class="display-4 text-center">Job Details</h1>
+    <div class="container">
+        <p>Job Posting Headline : <span id="jobTitle"></span></p>
+        <p>Employment Type : <span id="jobType"></span></p>
+        <p>Job Description : <p id="description"></p></p>
+        <p>Key Skills : <span id="skills"></span></p>
+        <p>Work Experience : <span id="minYears"></span> To <span id="maxYears"></span></p>
+        <p>Annual Salary : <span id="minSalary"></span> To <span id="maxSalary"></span></p>
+        <p>Location : <span id="location"></span></p>
+        <p>No of Vacancy : <span id="noOfVacancy"></span></p>
+        <p>Educational Qualification : <span id="qualification"></span></p>
+        <button id="updateBtn" class="btn btn-secondary">Update Job Post</button>
+        <button id="deleteBtn" class="btn btn-danger">Delete Job Post</button>
+    </div>
+</body>
+    <script src="/base/JobManager.js"></script>
+    <script src="/assets/js/ViewJobDetails.js"></script>
+</html>

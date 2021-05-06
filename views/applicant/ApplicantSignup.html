@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Recruit Desk</title>
+</head>
+<body>
+    <h1 class="display-4">Applicant Signup</h1>
+    <form onsubmit="createAccount()">
+        <input type="text" name="name" id="name" placeholder="Name" required>
+        <input type="email" name="email" id="email" placeholder="Email" required>
+        <input type="password" name="password" id="password" placeholder="Password" required>
+        <button>SignUp</button>
+    </form>
+    <script src="/base/Applicant.js"></script>
+    <script type="text/javascript">
+        /**
+         * Function to store user data to localstorage
+         */
+        function createAccount(){ 
+            event.preventDefault();
+            let name = document.getElementById('name').value;
+            let email = document.getElementById('email').value;
+            let password = document.getElementById('password').value;
+
+            if(validateName(name) && validatePassword(password)){
+                let newApplicant = {
+                "name": name,
+                "email": email,
+                "password": password
+                }
+                Applicant.addApplicant(newApplicant);
+            } else{
+                console.log("Please provide valid name and password");
+            }
+        }
+        
+        /**
+         * Function to test name is valid.
+         * @param {string} name.
+         * @return {boolean} name valid or not.
+         */
+        function validateName(name){
+            let valid = false;
+            if(name.trim().length > 0){
+                valid = true;
+            }
+            return true;
+        }
+
+        /**
+         * Function to test whether the password has atleast 8 characters length.
+         * @param {string} password.
+         * @return {boolean} password valid or not.
+         */
+        function validatePassword(password){
+            let valid = false;
+            if(password.trim().length >= 8){
+                valid = true;
+            }
+            return valid;
+        }
+
+    </script>
+</body>
+</html>

@@ -27,5 +27,13 @@ function addJob(){
     };
 
     JobManager.addJobOffer(job);
+    window.location.href="AllJobs.html";
+}
 
+addDescription();
+
+function addDescription(){
+    let textArea = document.getElementById('description');
+    let description = "Roles and Responsibilities\n\nDesired Candidate Profile\n\nPerks and Benefits";
+    textArea.placeholder = description;
 }

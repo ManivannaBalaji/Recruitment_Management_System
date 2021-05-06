@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <title>Recruit Desk</title>
+    </head>
+    <body>
+        <h1 class="display-4">Applicant Login</h1>
+        <form onsubmit="authenticate()">
+            <input type="email" name="email" id="email" placeholder="Email" required>
+            <input type="password" name="password" id="password" placeholder="Password" required>
+            <button>Login</button>
+        </form>
+    </body>
+    <script src="/base/Applicant.js"></script>
+    <script type="text/javascript">
+        function authenticate(){
+            event.preventDefault();
+            let email = document.getElementById('email').value;
+            let password = document.getElementById('password').value;
+            let validApplicant = Applicant.authenticateApplicant(email, password);
+            if(validApplicant){
+                alert('Login Successful!');
+                let applicant = Applicant.getApplicant(email);
+                localStorage.setItem('USER', JSON.stringify(applicant));
+                window.location.href = "ApplicantDashboard.html";
+            } else{
+                alert('Invalid Credentials, Try again');
+            }
+        }
+    </script>
+</html>
