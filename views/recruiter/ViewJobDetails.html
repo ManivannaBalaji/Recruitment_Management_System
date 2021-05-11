@@ -6,23 +6,33 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Recruit Desk</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/sidebar.css">
 </head>
 <body>
-    <h1 class="display-4 text-center">Job Details</h1>
-    <div class="container">
-        <p>Job Posting Headline : <span id="jobTitle"></span></p>
-        <p>Employment Type : <span id="jobType"></span></p>
-        <p>Job Description : <p id="description"></p></p>
-        <p>Key Skills : <span id="skills"></span></p>
-        <p>Work Experience : <span id="minYears"></span> To <span id="maxYears"></span></p>
-        <p>Annual Salary : <span id="minSalary"></span> To <span id="maxSalary"></span></p>
-        <p>Location : <span id="location"></span></p>
-        <p>No of Vacancy : <span id="noOfVacancy"></span></p>
-        <p>Educational Qualification : <span id="qualification"></span></p>
-        <button id="updateBtn" class="btn btn-secondary">Update Job Post</button>
-        <button id="deleteBtn" class="btn btn-danger">Delete Job Post</button>
+    <div class="sidebar">
+            <a href="/views/recruiter/RecruiterDashboard.html">Dashboard</a>
+            <a class="active" href="/views/recruiter/JobsMenu.html">Jobs</a>
+            <a href="/views/recruiter/AllApplicants.html">Applicants</a>
+            <a href="#selected">Selected List</a>
+    </div>
+    <div class="content">
+        <h1 class="display-4 text-center">Recruit Desk</h1>
+        <div class="container">
+            <h5>Job Details</h5>
+            <p>Job Posting Headline : <span id="jobTitle"></span></p>
+            <p>Employment Type : <span id="jobType"></span></p>
+            <p>Job Description : <p id="description"></p></p>
+            <p>Key Skills : <span id="skills"></span></p>
+            <p>Work Experience : <span id="minYears"></span> To <span id="maxYears"></span></p>
+            <p>Annual Salary : <span id="minSalary"></span> To <span id="maxSalary"></span></p>
+            <p>Location : <span id="location"></span></p>
+            <p>No of Vacancy : <span id="noOfVacancy"></span></p>
+            <p>Educational Qualification : <span id="qualification"></span></p>
+            <button id="updateBtn" class="btn btn-secondary">Update Job Post</button>
+            <button id="deleteBtn" class="btn btn-danger">Delete Job Post</button>
+        </div>
     </div>
 </body>
-    <script src="/base/JobManager.js"></script>
+    <script src="/service/JobManager.js"></script>
     <script src="/assets/js/ViewJobDetails.js"></script>
 </html>

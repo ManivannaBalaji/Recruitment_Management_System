@@ -10,12 +10,12 @@
 <body>
     <h1 class="display-4">Applicant Signup</h1>
     <form onsubmit="createAccount()">
-        <input type="text" name="name" id="name" placeholder="Name" required>
+        <input type="text" name="name" id="name" placeholder="Name" pattern="([^\s][A-z\s]+)" title="Please enter alphabets and spaces(Not first)" required>
         <input type="email" name="email" id="email" placeholder="Email" required>
-        <input type="password" name="password" id="password" placeholder="Password" required>
+        <input type="password" name="password" id="password" placeholder="Password" pattern=".{8,}" title="Minimum 8 characters" required>
         <button>SignUp</button>
     </form>
-    <script src="/base/Applicant.js"></script>
+    <script src="/service/ApplicantManager.js"></script>
     <script type="text/javascript">
         /**
          * Function to store user data to localstorage
@@ -26,44 +26,31 @@
             let email = document.getElementById('email').value;
             let password = document.getElementById('password').value;
 
-            if(validateName(name) && validatePassword(password)){
+            if(validateEmail(email)){
                 let newApplicant = {
                 "name": name,
                 "email": email,
                 "password": password
                 }
-                Applicant.addApplicant(newApplicant);
+                ApplicantManager.addApplicant(newApplicant);
+                alert('Account created successfully');
+                window.location.href = "ApplicantLogin.html";
             } else{
-                console.log("Please provide valid name and password");
+                alert("Email address already in use.");
             }
         }
-        
         /**
-         * Function to test name is valid.
-         * @param {string} name.
-         * @return {boolean} name valid or not.
+         * Function to check whether email already exists.
+         * @param {string} email
          */
-        function validateName(name){
-            let valid = false;
-            if(name.trim().length > 0){
-                valid = true;
-            }
-            return true;
-        }
-
-        /**
-         * Function to test whether the password has atleast 8 characters length.
-         * @param {string} password.
-         * @return {boolean} password valid or not.
-         */
-        function validatePassword(password){
-            let valid = false;
-            if(password.trim().length >= 8){
-                valid = true;
+        function validateEmail(email){
+            let valid = true;
+            let applicant = ApplicantManager.getApplicant(email);
+            if(applicant != null){
+                valid = false;
             }
             return valid;
-        }
-
+        }    
     </script>
 </body>
 </html>

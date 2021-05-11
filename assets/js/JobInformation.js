@@ -1,19 +1,14 @@
-let deleteBtn = document.getElementById('deleteBtn');
-let updateBtn = document.getElementById('updateBtn');
+let applyBtn = document.getElementById('applyBtn');
+
+applyBtn.addEventListener('click', function(){
+    window.location.href = "ApplyJob.html";
+});
 
 setJobDetails();
 
-updateBtn.addEventListener('click', function(){
-    window.location.href = "UpdateJobPost.html";
-});
-
-deleteBtn.addEventListener('click', function(){
-    let jobId = JobManager.getCurrentJobId();
-    JobManager.removeJobOffer(jobId);
-    alert('Job post deleted');
-    window.location.href = "AllJobs.html";
-});
-
+/**
+ * Function to display job details.
+ */
 function setJobDetails(){
     let jobId = JobManager.getCurrentJobId();
     let jobOffer = JobManager.getJobOffer(jobId);

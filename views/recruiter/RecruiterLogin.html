@@ -10,7 +10,7 @@
     <body>
         <h1 class="display-4">Recruiter Login</h1>
         <form onsubmit="authenticate()">
-            <input type="email" name="email" id="email" placeholder="Email" required>
+            <input type="email" name="email" id="email" placeholder="Email" required autofocus>
             <input type="password" name="password" id="password" placeholder="Password" required>
             <button>Login</button>
         </form>
@@ -25,6 +25,7 @@
                 let password = document.getElementById('password').value;
                 if(validateEmail(email) && validatePassword(password)){
                     alert('Login Success!');
+                    localStorage.setItem('USER', JSON.stringify({userType: "recruiter"}));
                     window.location.href = 'RecruiterDashboard.html';
                 } else{
                     alert('Invalid Credentials, Try again');

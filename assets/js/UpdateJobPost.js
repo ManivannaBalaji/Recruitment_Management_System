@@ -1,5 +1,8 @@
-let jobId = getJobId();
+let jobId = JobManager.getCurrentJobId();
 
+/**
+ * Function to store the updated job details to storage.
+ */
 function updatePost(){
     event.preventDefault();
     let jobTitle = document.getElementById('jobTitle').value;
@@ -29,16 +32,31 @@ function updatePost(){
         "qualification": qualification
     };
 
-    JobManager.updateJobOffer(jobId, updatedJob);
-    alert('Job Details updated');
-    window.location.href = "AllJobs.html";
+    let isValidSalary = InputValidator.validateSalary(minSalary, maxSalary);
+    let isValidYear = InputValidator.validateExperience(minYears, maxYears);
+    let allFieldsFilled = InputValidator.checkFormFields(updatedJob);
+
+    if(isValidSalary && isValidYear && allFieldsFilled){
+        JobManager.updateJobOffer(jobId, updatedJob);
+        alert('Job Details updated');
+        window.location.href = "AllJobs.html";
+    } else if(!isValidSalary){
+        alert('Please check minimum salary is less than maximum salary');
+    } else if(!isValidYear){
+        alert('Please check minimum experience is less than maximum experience');
+    } else{
+        alert("Please fill all fields(Empty spaces not allowed!)");
+    }
 
 }
 
 fillDetailsToForm();
 
+/**
+ * Function to fill job details to form for updating purpose.
+ */
 function fillDetailsToForm(){
-    let jobOffer = getJobDetails(jobId);
+    let jobOffer = JobManager.getJobOffer(jobId);
     document.getElementById('jobTitle').value = jobOffer.jobTitle;
     document.getElementById('jobType').value = jobOffer.jobType;
     document.getElementById('description').value = jobOffer.description;
@@ -50,14 +68,4 @@ function fillDetailsToForm(){
     document.getElementById('location').value = jobOffer.location;
     document.getElementById('noOfVacancy').value = jobOffer.noOfVacancy;
     document.getElementById('qualification').value = jobOffer.qualification;
-}
-
-function getJobId(){
-    let jobId = localStorage.getItem('JOB_VIEW_ID');
-    return jobId;
-}
-
-function getJobDetails(jobId){
-    let jobOffer = JobManager.getJobOffer(jobId);
-    return jobOffer;
 }

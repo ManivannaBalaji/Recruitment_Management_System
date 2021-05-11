@@ -100,4 +100,12 @@ class JobManager{
         return jobOffer;
     }
 
+    /**
+     * Function to get last accessed job id.
+     */
+    static getCurrentJobId(){
+        let jobId = localStorage.getItem('JOB_VIEW_ID');
+        return jobId;
+    }
+
 }

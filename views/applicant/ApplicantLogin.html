@@ -10,12 +10,12 @@
     <body>
         <h1 class="display-4">Applicant Login</h1>
         <form onsubmit="authenticate()">
-            <input type="email" name="email" id="email" placeholder="Email" required>
+            <input type="email" name="email" id="email" placeholder="Email" required autofocus>
             <input type="password" name="password" id="password" placeholder="Password" required>
             <button>Login</button>
         </form>
     </body>
-    <script src="/base/Applicant.js"></script>
+    <script src="/service/ApplicantManager.js"></script>
     <script type="text/javascript">
         function authenticate(){
             event.preventDefault();
@@ -25,6 +25,7 @@
             if(validApplicant){
                 alert('Login Successful!');
                 let applicant = Applicant.getApplicant(email);
+                applicant['userType'] = 'applicant';
                 localStorage.setItem('USER', JSON.stringify(applicant));
                 window.location.href = "ApplicantDashboard.html";
             } else{

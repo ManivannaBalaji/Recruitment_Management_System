@@ -6,10 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Recruit Desk</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/sidebar.css">
 </head>
 <body>
-    <div class="container">
-        <h1 class="display-4 text-center">Update Job Post</h1>
+    <nav class="sidebar">
+        <a href="/views/recruiter/RecruiterDashboard.html">Dashboard</a>
+        <a class="active" href="/views/recruiter/JobsMenu.html">Jobs</a>
+        <a href="/views/recruiter/AllApplicants.html">Applicants</a>
+        <a href="#selected">Selected List</a>
+    </nav>
+    <header>
+        <h1 class="display-4 text-center">Recruit Desk</h1>
+    </header>
+    <main class="content">
+        <h5>Update Job Post</h5>
         <form onsubmit="updatePost()">
             <div class="form-group">
                 <label for="jobTitle">Job Posting Headline</label>
@@ -56,10 +66,11 @@
                 <label for="qualification">Educational Qualification</label>
                 <input type="text" name="qualification" id="qualification" placeholder="Qualification" required>
             </div>
-            <button id="updateBtn">Update Job</button>
+            <button id="updateBtn" class="btn btn-secondary">Update Job</button>
         </form>
-    </div>
-    <script src="/base/JobManager.js"></script>
+    </main>
+    <script src="/service/JobManager.js"></script>
+    <script src="/validator/InputValidator.js"></script>
     <script src="/assets/js/UpdateJobPost.js"></script>
 </body>
 </html>

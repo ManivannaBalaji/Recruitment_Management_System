@@ -12,6 +12,9 @@ function addJob(){
     let noOfVacancy = document.getElementById('noOfVacancy').value;
     let qualification = document.getElementById('qualification').value;
 
+    let isValidSalary = InputValidator.validateSalary(minSalary, maxSalary);
+    let isValidYear = InputValidator.validateExperience(minYears, maxYears);
+
     let job = {
         "jobTitle": jobTitle,
         "jobType": jobType,
@@ -26,12 +29,24 @@ function addJob(){
         "qualification": qualification
     };
 
-    JobManager.addJobOffer(job);
-    window.location.href="AllJobs.html";
+    let allFieldsFilled = InputValidator.checkFormFields(job);
+
+    if(isValidSalary && isValidYear && allFieldsFilled){   
+        JobManager.addJobOffer(job);
+        window.location.href="AllJobs.html";
+    } else if(!isValidSalary){
+        alert('Please check minimum salary is less than maximum salary');
+    } else if(!isValidYear){
+        alert('Please check minimum experience is less than maximum experience');
+    } else{
+        alert("Please fill all fields(Empty spaces not allowed!)");
+    }
 }
 
 addDescription();
-
+/**
+ * Function to add multi-line placeholder text to textarea
+ */
 function addDescription(){
     let textArea = document.getElementById('description');
     let description = "Roles and Responsibilities\n\nDesired Candidate Profile\n\nPerks and Benefits";
