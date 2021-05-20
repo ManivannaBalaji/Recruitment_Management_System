@@ -10,10 +10,11 @@
 </head>
 <body>
     <nav class="sidebar">
-            <a href="/views/recruiter/RecruiterDashboard.html">Dashboard</a>
-            <a href="/views/recruiter/JobsMenu.html">Jobs</a>
-            <a class="active" href="/views/recruiter/AllApplicants.html">Applicants</a>
-            <a href="#selected">Selected List</a>
+        <a href="/views/recruiter/RecruiterDashboard.html">Dashboard</a>
+        <a href="/views/recruiter/JobsMenu.html">Jobs</a>
+        <a class="active" href="/views/recruiter/AllApplicants.html">Applicants</a>
+        <a href="/views/recruiter/SelectedList.html">Selected List</a>
+        <a href="/index.html">Logout</a>
     </nav>
     <header>
         <h1 class="display-4 text-center">Recruit Desk</h1>
@@ -33,10 +34,11 @@
                 <tr><th scope="row">3</th><td>Mobile</td><td><span id="mobile"></span></td></tr>
                 <tr><th scope="row">4</th><td>Role</td><td><span id="jobTitle"></span></td></tr>
                 <tr><th scope="row">5</th><td>Year of Passing</td><td><span id="yop"></span></td></tr>
-                <tr><th scope="row">6</th><td>Work Experience</td><td><span id="experience"></span></td></tr>
-                <tr><th scope="row">7</th><td>Score</td><td><input id="score" type="number" min="0" max="10" placeholder="score"></td></tr>
+                <tr><th scope="row">6</th><td>Work Experience</td><td><span id="experience"></span> Years</td></tr>
+                <tr><th scope="row">7</th><td>Address</td><td><span id="address"></span></td></tr>
+                <tr><th scope="row">8</th><td>Score (1 to 10)</td><td><input id="score" type="number" min="0" max="10" placeholder="score"></td></tr>
                 <tr>
-                    <th scope="row">8</th>
+                    <th scope="row">9</th>
                     <td>Selection Status</td>
                     <td>
                         <select name="status" id="status">
@@ -52,6 +54,7 @@
         <button id="backBtn" class="btn btn-danger">Back</button>  
     </main>
     <script src="/service/ApplicationManager.js"></script>
+    <script src="/service/SelectionManager.js"></script>
     <script src="/assets/js/ApplicantDetails.js"></script>
 </body>
 </html>

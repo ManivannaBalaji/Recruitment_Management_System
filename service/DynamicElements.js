@@ -32,4 +32,41 @@ class DynamicElements{
         let td = document.createElement('td');
         return td;
     }
+
+    /**
+     * Function to create a column class for responsive page.
+     */
+    static createColumn(){
+        let section = document.createElement('section');
+        section.className = "col-lg-4";
+        return section;
+    }
+
+    /**
+     * Function to create card element.
+     */
+    static createCard(){
+        let card = document.createElement('section');
+        card.className = "card";
+        card.style.width = "18rem";
+        let cardBody = document.createElement('div');
+        cardBody.className = "card-body";
+        card.appendChild(cardBody);
+        return card;
+    }
+
+    /**
+     * Function to create progress bar.
+     * @param {*} percentage 
+     */
+    static createProgress(percentage){
+        let div = document.createElement('div');
+        div.className = "progress";
+        let progress = document.createElement('div');
+        progress.className = "progress-bar";
+        progress.setAttribute("role", "progressbar");
+        progress.style.width = percentage + "%";
+        div.appendChild(progress);
+        return div;
+    }
 }

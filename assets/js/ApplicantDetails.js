@@ -1,11 +1,37 @@
 let email = localStorage.getItem("APPLICANT_EMAIL");
+let applicationId = localStorage.getItem("APPLICATION_ID");
 let updateBtn = document.getElementById('updateBtn');
 let backBtn = document.getElementById('backBtn');
 
-let application = ApplicationManager.getApplication(email);
+let application = ApplicationManager.getApplication(email, applicationId);
 
 backBtn.addEventListener('click', function(){
     window.location.href = "AllApplicants.html";
+});
+
+updateBtn.addEventListener('click', function(){
+    let currentscore = document.getElementById('score').value;
+    let currentStatus = document.getElementById('status').value;
+    let storedStatus = application.status;
+    if(currentStatus != storedStatus){      //checking if there is any change in application status.
+        application["score"] = currentscore;
+        application["status"] = currentStatus;
+        ApplicationManager.updateApplication(applicationId, application);
+        if(currentStatus === "selected"){
+            saveToSelectedList(application);        //Storing application to selected list if status becomes selected.
+        } else if(currentStatus === "notselected" && storedStatus === "selected"){
+            SelectionManager.deleteSelection(application.id);       //Deleting the application from selected list if status becomes not selected.
+        } else if(currentStatus === "pending" && storedStatus === "selected"){
+            SelectionManager.deleteSelection(application.id);       //Deleting th application from selected list if status becomes pending.
+            application.id = application.applicationId;
+            delete application["applicationId"];
+            ApplicationManager.updateApplication(applicationId, application);
+        }
+    } else{
+        application["score"] = currentscore;
+        ApplicationManager.updateApplication(applicationId, application);
+        alert("Application Updated successfully.");
+    }
 });
 
 showAllData(application);
@@ -20,6 +46,13 @@ function showAllData(application){
     document.getElementById('jobTitle').innerText = application.jobTitle;
     document.getElementById('yop').innerText = application.yop;
     document.getElementById('experience').innerText = application.experience;
+    document.getElementById('address').innerText = application.address;
     document.getElementById('score').value = application.score;
     document.getElementById('status').value = application.status;
+}
+
+function saveToSelectedList(selectedApplication){
+    selectedApplication["applicationId"] = selectedApplication.id;
+    selectedApplication["id"] = 0;
+    SelectionManager.addSelection(selectedApplication);
 }

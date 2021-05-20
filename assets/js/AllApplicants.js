@@ -13,9 +13,14 @@ function displayApplications(applications){
     applications.forEach(element => {
         //creating tr for a application.
         let tr = DynamicElements.createTableRow();
-        //creating th for applicant name.
-        let th = DynamicElements.createTableHeader(element.name);
+        //creating th for applicantion Id.
+        let th = DynamicElements.createTableHeader(element.id);
+        th.id = "id";
         tr.appendChild(th);
+        //creating td for applicant name.
+        let tdName = DynamicElements.createTableData();
+        tdName.innerText = element.name;
+        tr.appendChild(tdName);
         //creating td for email.
         let tdEmail = DynamicElements.createTableData();
         tdEmail.innerText = element.email;
@@ -36,6 +41,15 @@ function displayApplications(applications){
     });
 }
 
+searchBtn.addEventListener('click', function(){
+    let searchText = document.getElementById('search').value;
+    tableContent.innerHTML = "";
+    searchText = searchText.charAt(0).toUpperCase() + searchText.slice(1); //capitalize search term first letter.
+    let applications = ApplicationManager.filterApplicationByJob(searchText);
+    displayApplications(applications);
+    addListenerToButtons();
+});
+
 addListenerToButtons();
 /**
  * Function to add event listener to all dynamically generated buttons.
@@ -45,7 +59,9 @@ function addListenerToButtons(){
         document.querySelectorAll('.viewBtn').forEach(function(event){
             event.addEventListener('click', function(e){
                 let email = e.target.parentNode.parentNode.querySelector('#email').innerText;
+                let applicationId = e.target.parentNode.parentNode.querySelector('#id').innerText;
                 localStorage.setItem("APPLICANT_EMAIL", email);
+                localStorage.setItem("APPLICATION_ID", applicationId);
                 window.location.href = "ApplicantDetails.html";
             });
         });

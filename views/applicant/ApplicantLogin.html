@@ -21,10 +21,10 @@
             event.preventDefault();
             let email = document.getElementById('email').value;
             let password = document.getElementById('password').value;
-            let validApplicant = Applicant.authenticateApplicant(email, password);
+            let validApplicant = ApplicantManager.authenticateApplicant(email, password);
             if(validApplicant){
                 alert('Login Successful!');
-                let applicant = Applicant.getApplicant(email);
+                let applicant = ApplicantManager.getApplicant(email);
                 applicant['userType'] = 'applicant';
                 localStorage.setItem('USER', JSON.stringify(applicant));
                 window.location.href = "ApplicantDashboard.html";

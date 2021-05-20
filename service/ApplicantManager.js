@@ -1,6 +1,6 @@
 let applicants = [];
 
-class Applicant{
+class ApplicantManager{
 
     /**
      * Function to add new applicant.

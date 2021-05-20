@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Recruit Desk</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/sidebar.css">
+</head>
+<body>
+    <nav class="sidebar">
+        <a href="/views/recruiter/RecruiterDashboard.html">Dashboard</a>
+        <a href="/views/recruiter/JobsMenu.html">Jobs</a>
+        <a href="/views/recruiter/AllApplicants.html">Applicants</a>
+        <a class="active" href="/views/recruiter/SelectedList.html">Selected List</a>
+        <a href="/index.html">Logout</a>
+    </nav>
+    <header>
+        <h1 class="display-4 text-center">Recruit Desk</h1>
+    </header>
+    <main class="content">
+        <Label>Sort By</Label>
+        <select name="order" id="order">
+            <option value="disabled" disabled>Please select an option</option>
+            <option value="ascending">Lower to Higher Score</option>
+            <option value="descending">Higher to Lower Score</option>
+        </select>
+        <button id="sortBtn" class="btn btn-primary">Apply</button>
+        <button class="btn btn-primary" onclick="window.location.reload()">Clear</button>
+        <table class="table table-hover">
+            <thead>
+                <th scope="col">Application Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Post</th>
+                <th scope="col">Score</th>
+                <th scope="col">Status</th>
+                <th scope="col">Actions</th>
+            </thead>
+            <tbody id="table-content"></tbody>
+        </table>
+    </main>
+    <script src="/service/SelectionManager.js"></script>
+    <script src="/service/DynamicElements.js"></script>
+    <script src="/assets/js/SelectedList.js"></script>
+</body>
+</html>

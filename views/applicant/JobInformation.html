@@ -10,9 +10,9 @@
 </head>
 <body>
     <nav class="sidebar">
-            <a class="active" href="/views/applicant/ApplicantDashboard.html">Dashboard</a>
-            <a href="#">Applications</a>
-            <a href="#">Profile</a>
+        <a class="active" href="/views/applicant/ApplicantDashboard.html">Dashboard</a>
+        <a href="/views/applicant/Applications.html">Applications</a>
+        <a href="/index.html">Logout</a>
     </nav>
     <header>
         <h1 class="display-4 text-center">Recruit Desk</h1>
@@ -27,7 +27,7 @@
             </thead>
             <tbody>
                 <tr><td>Job Posting Headline</td><td><span id="jobTitle"></span></td></tr>
-                <tr><td>Employment Type</td><td><span id="jobType"></span></td></tr>
+                <tr><td>Employment Type</td><td><span id="jobType"></span> Time</td></tr>
                 <tr><td>Job Description</td><td><p id="description"></p></td></tr>
                 <tr><td>Key Skills</td><td><span id="skills"></span></td></tr>
                 <tr><td>Work Experience</td><td><span id="minYears"></span> To <span id="maxYears"></span> Years</td></tr>
@@ -37,7 +37,8 @@
                 <tr><td>Educational Qualification</td><td><span id="qualification"></span></td></tr>
             </tbody>
         </table>
-        <button id="applyBtn" class="btn btn-warning">Apply for this Job</button>   
+        <button id="applyBtn" class="btn btn-warning">Apply for this Job</button>
+        <a href="ApplicantDashboard.html" class="btn btn-primary">Back</a>   
     </main>
     <script src="/service/JobManager.js"></script>
     <script src="/assets/js/JobInformation.js"></script>
