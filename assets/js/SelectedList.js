@@ -27,10 +27,11 @@ function displayData(selectedList){
         let tdScore = DynamicElements.createTableData();
         tdScore.innerText = element.score;
         tr.appendChild(tdScore);
-        //creating td tag for application status.
-        let tdStatus = DynamicElements.createTableData();
-        tdStatus.innerText = element.status;
-        tr.appendChild(tdStatus);
+        //creating td tag for applicant email.
+        let tdEmail = DynamicElements.createTableData();
+        tdEmail.innerText = element.email;
+        tdEmail.className = "email";
+        tr.appendChild(tdEmail);
         //creating td tag for action button
         let tdButton = DynamicElements.createTableData();
         //creating button
@@ -55,6 +56,7 @@ sortBtn.addEventListener("click", function(){
         let descendingList = SelectionManager.orderByDescending(selectedList);
         displayData(descendingList);
     }
+    addListenerToButtons();
 });
 
 addListenerToButtons();
@@ -65,6 +67,10 @@ function addListenerToButtons(){
     if(document.querySelector('button')){
         document.querySelectorAll('.viewBtn').forEach(function(event){
             event.addEventListener('click', function(e){
+                let applicationId = e.target.parentNode.parentNode.querySelector("th").innerText;
+                let email = e.target.parentNode.parentNode.querySelector(".email").innerText;
+                localStorage.setItem("APPLICANT_EMAIL", email);
+                localStorage.setItem("APPLICATION_ID", applicationId);
                 window.location.href = "ApplicantDetails.html";
             });
         });

@@ -1,4 +1,5 @@
-let userEmail = localStorage.getItem("APPLICANT_EMAIL");
+let user = JSON.parse(localStorage.getItem("USER"));
+let userEmail = user.email;
 let contentTable = document.getElementById('table-content');
 let userApplications = ApplicationManager.getApplicationsByUser(userEmail);
 

@@ -22,11 +22,10 @@ updateBtn.addEventListener('click', function(){
         } else if(currentStatus === "notselected" && storedStatus === "selected"){
             SelectionManager.deleteSelection(application.id);       //Deleting the application from selected list if status becomes not selected.
         } else if(currentStatus === "pending" && storedStatus === "selected"){
-            SelectionManager.deleteSelection(application.id);       //Deleting th application from selected list if status becomes pending.
-            application.id = application.applicationId;
-            delete application["applicationId"];
+            SelectionManager.deleteSelection(application.id);       //Deleting the application from selected list if status becomes pending.
             ApplicationManager.updateApplication(applicationId, application);
         }
+        alert("Application Updated successfully.");
     } else{
         application["score"] = currentscore;
         ApplicationManager.updateApplication(applicationId, application);
