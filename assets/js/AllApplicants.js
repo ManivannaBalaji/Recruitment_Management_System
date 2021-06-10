@@ -1,4 +1,4 @@
-let searchBtn = document.getElementById('searchBtn');
+let search = document.getElementById('search');
 let tableContent = document.getElementById('table-content');
 
 let allApplications = ApplicationManager.getAllApplications();
@@ -41,11 +41,13 @@ function displayApplications(applications){
     });
 }
 
-searchBtn.addEventListener('click', function(){
-    let searchText = document.getElementById('search').value;
+search.addEventListener('input', function(){
+    let searchText = search.value;
     tableContent.innerHTML = "";
-    searchText = searchText.charAt(0).toUpperCase() + searchText.slice(1); //capitalize search term first letter.
     let applications = ApplicationManager.filterApplicationByJob(searchText);
+    if(applications.length < 1){
+        tableContent.innerText = "No data found!";
+    }
     displayApplications(applications);
     addListenerToButtons();
 });

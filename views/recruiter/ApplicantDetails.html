@@ -36,7 +36,7 @@
                 <tr><th scope="row">5</th><td>Year of Passing</td><td><span id="yop"></span></td></tr>
                 <tr><th scope="row">6</th><td>Work Experience</td><td><span id="experience"></span> Years</td></tr>
                 <tr><th scope="row">7</th><td>Address</td><td><span id="address"></span></td></tr>
-                <tr><th scope="row">8</th><td>Score (1 to 10)</td><td><input id="score" type="number" min="0" max="10" placeholder="score"></td></tr>
+                <tr><th scope="row">8</th><td>Score (0 to 10)</td><td><input id="score" type="number" min="0" max="10" placeholder="score"></td></tr>
                 <tr>
                     <th scope="row">9</th>
                     <td>Selection Status</td>
@@ -45,9 +45,11 @@
                             <option value="pending">Pending</option>
                             <option value="selected">Selected</option>
                             <option value="notselected">Not Selected</option>
+                            <option value="hold">Hold</option>
                         </select>
                     </td>
                 </tr>
+                <tr><th scope="row">10</th><td>Comments</td><td><textarea id="comments" rows="7" cols="100" placeholder="Add comments"></textarea></td></tr>
             </tbody>
         </table>
         <button id="updateBtn" class="btn btn-secondary">Update</button>

@@ -1,5 +1,5 @@
 let tableContent = document.getElementById('table-content');
-let searchBtn = document.getElementById('searchBtn');
+let search = document.getElementById('search');
 
 let allJobs = JobManager.getJobOffers();
 
@@ -30,10 +30,9 @@ function displayJobs(allJobs){
     });   
 }
 
-searchBtn.addEventListener('click', function(){
-    let searchText = document.getElementById('search').value;
+search.addEventListener('input', function(){
+    let searchText = document.getElementById('search').value.toLowerCase();
     tableContent.innerHTML = "";
-    searchText = searchText.charAt(0).toUpperCase() + searchText.slice(1); //capitalize search term first letter.
     let jobOffers = JobManager.searchJobOffer(searchText);
     if(jobOffers.length < 1){
         tableContent.innerHTML = "<p>No Jobs Found!";
